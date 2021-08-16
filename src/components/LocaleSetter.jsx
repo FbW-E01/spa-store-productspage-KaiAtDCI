@@ -5,7 +5,6 @@ export default function LocaleSetter() {
 
   const {locale, setLocale} = useContext(LocaleContext);
 
-
   return (
    <div className='LanguageSetter'>
      <select name="language"
