@@ -1,7 +1,8 @@
-import { useProductsContext } from '../contexts/ProductsContext';
+import ProductsContext, { useProductsContext } from '../contexts/ProductsContext';
+import {useContext} from "react";
 
 export default function Header() {
-    const [ products ] = useProductsContext();
+    const { products, setProducts } = useContext(ProductsContext)
 
     return (
         <header>
