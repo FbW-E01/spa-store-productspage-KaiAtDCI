@@ -3,13 +3,29 @@ import CreateProduct from './CreateProduct'
 import Products from './Products'
 import { ProductsContextProvider } from '../contexts/ProductsContext'
 import LocaleContext from "../contexts/LocaleContext";
-import {useState} from "react";
+import {useReducer, useState} from "react";
 import LocaleSetter from "./LocaleSetter";
+
+function reducer(previousState, action) {
+  const newState = { ...previousState }
+  switch (action.type) {
+    case 'setLocale':
+      console.log('reducer| set locale')
+      newState.locale = action.locale;
+      return newState;
+    default:
+      return previousState;
+  }
+}
 
 export default function App() {
 
-    const [language, setLanguage] = useState('en-us');
-    const context = { language, setLanguage };
+  const [state, dispatch] = useReducer(reducer, {locale: 'en-us'});
+  const context = {
+    locale: state.locale,
+    setLocale: locale => dispatch({type: 'setLocale', locale: locale})
+  };
+
 
     return (
       <div>
